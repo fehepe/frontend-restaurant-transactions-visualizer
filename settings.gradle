@@ -1,0 +1,2 @@
+rootProject.name = "frontend-restaurant-transactions-visualizer"
+include ':app'
