@@ -7,10 +7,44 @@
     android:layout_height="match_parent"
     tools:context=".ui.buyer_main_page.MainActivity">
 
+
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:orientation="vertical">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:titleTextColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+      <androidx.constraintlayout.widget.ConstraintLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="end">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLoad"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+
+            android:backgroundTint="?attr/colorPrimary"
+            app:icon="@drawable/ic_baseline_cloud_download_24"
+            app:iconGravity="end"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+      </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
     <ProgressBar
         android:id="@+id/pbBuyers"
         android:layout_width="wrap_content"
@@ -26,18 +60,7 @@
         android:text="Connection Problem!!"
         android:visibility="gone"/>
 
-    <TextView
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-
-        android:layout_margin="10dp"
-        android:text="Buyers of Restaurant"
-        />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_buyer_list"
         android:layout_margin="4dp"
