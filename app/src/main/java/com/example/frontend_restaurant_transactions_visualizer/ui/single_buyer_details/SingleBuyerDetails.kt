@@ -2,15 +2,9 @@ package com.example.frontend_restaurant_transactions_visualizer.ui.single_buyer_
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.example.frontend_restaurant_transactions_visualizer.data.api.RTVClient
 import com.example.frontend_restaurant_transactions_visualizer.data.api.RTVInterface
-import com.example.frontend_restaurant_transactions_visualizer.data.repository.NetworkState
 import com.example.frontend_restaurant_transactions_visualizer.data.vo.BuyerDetails
 import com.example.frontend_restaurant_transactions_visualizer.databinding.ActivitySingleBuyerDetailsBinding
 
@@ -18,9 +12,8 @@ import java.util.*
 
 class SingleBuyerDetails : AppCompatActivity() {
 
-    private lateinit var viewModel: SingleBuyerViewModel
-    private lateinit var buyerDetailsRepository: BuyerDetailsRepository
     private lateinit var binding: ActivitySingleBuyerDetailsBinding
+
     val header: MutableList<String> = ArrayList()
     val body: MutableList<MutableList<String>> = ArrayList()
 
@@ -39,18 +32,6 @@ class SingleBuyerDetails : AppCompatActivity() {
         }
 
         val apiService : RTVInterface = RTVClient.getClient()
-        buyerDetailsRepository = BuyerDetailsRepository(apiService)
-
-        viewModel = getViewModel(buyerId)
-
-        viewModel.buyerDetails.observe(this, Observer {
-            bindUI(it,imgUrl)
-        })
-
-        viewModel.networkState.observe(this,{
-            binding.pbLoading.visibility = if(it == NetworkState.LOADING) View.VISIBLE else View.GONE
-            binding.tvError.visibility = if(it == NetworkState.ERROR) View.VISIBLE else View.GONE
-        })
 
     }
 
@@ -101,11 +82,5 @@ class SingleBuyerDetails : AppCompatActivity() {
         binding.expandableListView.setAdapter(ExpandableListAdapter(this,binding.expandableListView, header, body))
     }
 
-    private  fun getViewModel(buyerId:String): SingleBuyerViewModel{
-        return ViewModelProviders.of(this, object : ViewModelProvider.Factory{
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return SingleBuyerViewModel(buyerDetailsRepository,buyerId) as T
-            }
-        })[SingleBuyerViewModel::class.java]
-    }
+
 }
