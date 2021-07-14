@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
                 val viewType = buyerAdapter.getItemViewType(position)
-                if (viewType == buyerAdapter.BUYER_VIEW_TYPE) return  1    // Movie_VIEW_TYPE will occupy 1 out of 3 span
+                if (viewType == buyerAdapter.BUYER_VIEW_TYPE) return  1    // BUYER_VIEW_TYPE will occupy 1 out of 3 span
                 else return 3                                              // NETWORK_VIEW_TYPE will occupy all 3 span
             }
         };
@@ -51,8 +51,8 @@ class MainActivity : AppCompatActivity() {
         })
 
         viewModel.networkState.observe(this, Observer {
-            binding.pbPopular.visibility = if (viewModel.listIsEmpty() && it == NetworkState.LOADING) View.VISIBLE else View.GONE
-            binding.txtErrorPopular.visibility = if (viewModel.listIsEmpty() && it == NetworkState.ERROR) View.VISIBLE else View.GONE
+            binding.pbBuyers.visibility = if (viewModel.listIsEmpty() && it == NetworkState.LOADING) View.VISIBLE else View.GONE
+            binding.txtErrorBuyers.visibility = if (viewModel.listIsEmpty() && it == NetworkState.ERROR) View.VISIBLE else View.GONE
 
             if (!viewModel.listIsEmpty()) {
                 buyerAdapter.setNetworkState(it)

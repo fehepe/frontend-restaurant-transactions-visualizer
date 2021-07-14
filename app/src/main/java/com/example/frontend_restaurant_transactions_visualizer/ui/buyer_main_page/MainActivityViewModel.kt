@@ -12,7 +12,7 @@ class MainActivityViewModel(private val buyerRepository : BuyerPagedListReposito
     private val compositeDisposable = CompositeDisposable()
 
     val  buyerPagedList : LiveData<PagedList<Buyer>> by lazy {
-        buyerRepository.fetchLiveMoviePagedList(compositeDisposable)
+        buyerRepository.fetchLiveBuyerPagedList(compositeDisposable)
     }
 
     val  networkState : LiveData<NetworkState> by lazy {

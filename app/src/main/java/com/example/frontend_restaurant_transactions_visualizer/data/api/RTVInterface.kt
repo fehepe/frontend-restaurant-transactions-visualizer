@@ -17,7 +17,7 @@ interface RTVInterface {
     fun getBuyerDetails(@Path("buyerId")id: String): Single<BuyerDetails>
 
     @GET("buyer/{date}")
-    fun getBuyerListByDate(@Path("buyerId")id: String): Single<List<Buyer>>
+    fun getBuyerListByDate(@Query("buyerId")id: String): Single<List<Buyer>>
 
     @POST("load")
     fun loadDataLocal(@Query("date") date: String): Single<String>

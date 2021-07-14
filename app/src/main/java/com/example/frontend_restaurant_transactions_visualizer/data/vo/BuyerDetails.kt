@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class BuyerDetails(
 
-    val buyer: Buyer,
+    val buyer: List<Buyer>,
     val transactions: List<Transaction>,
     @SerializedName("buyerEqIp")
     val buyersSameIp: List<BuyersSameIp>,

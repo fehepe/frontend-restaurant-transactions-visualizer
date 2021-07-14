@@ -88,7 +88,15 @@ class BuyerPagedListAdapter(public val context: Context) : PagedListAdapter<Buye
             itemView.cv_tvBuyerName.text = buyer?.name
             itemView.cv_tvBuyerAge.text =  buyer?.age.toString() + " years old"
 
-            val buyerPosterURL = "https://randomuser.me/api/portraits/med/men/75.jpg"
+            val randGender = (0..1).random()
+            var buyerPosterURL = ""
+
+            if (randGender == 0){
+                buyerPosterURL = "https://randomuser.me/api/portraits/men/${(0..99).random()}.jpg"
+            }else{
+                buyerPosterURL = "https://randomuser.me/api/portraits/women/${(0..99).random()}.jpg"
+            }
+
             Glide.with(itemView.context)
                 .load(buyerPosterURL)
                 .into(itemView.cv_ivBuyerPhoto);
@@ -96,6 +104,7 @@ class BuyerPagedListAdapter(public val context: Context) : PagedListAdapter<Buye
             itemView.setOnClickListener{
                 val intent = Intent(context, SingleBuyerDetails::class.java)
                 intent.putExtra("id", buyer?.id)
+                intent.putExtra("img",buyerPosterURL)
                 context.startActivity(intent)
             }
 

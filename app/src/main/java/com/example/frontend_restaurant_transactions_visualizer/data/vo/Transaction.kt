@@ -7,5 +7,5 @@ data class Transaction(
     val ip: String,
     val device: String,
     val products: List<Product>,
-    val recommendations: ProductRecommendations
+    val recommendations: List<ProductRecommendations>
 )

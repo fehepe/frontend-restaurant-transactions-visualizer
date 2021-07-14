@@ -39,35 +39,47 @@
                 <ImageView
                     android:id="@+id/ivBuyerPhoto"
                     android:layout_width="match_parent"
-                    android:layout_height="450dp"
+                    android:layout_height="200dp"
                     android:layout_gravity="center"
+                    android:layout_marginHorizontal="100sp"
                     android:scaleType="matrix"
                     android:src="@drawable/poster_placeholder"/>
 
                 <LinearLayout
 
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_margin="10dp">
+                    >
 
                     <TextView
+
                         android:id="@+id/tvBuyerName"
                         android:textStyle="bold"
-                        android:textSize="18sp"
+                        android:textSize="35sp"
                         android:textColor="@color/black"
                         android:text="Buyer Name"
+                        android:layout_gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
                     <TextView
                         android:textColor="@color/black"
                         android:textStyle="bold"
-                        android:textSize="14sp"
+                        android:textSize="20sp"
+                        android:padding="20dp"
                         android:layout_marginTop="15dp"
                         android:text="Buyer Information"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
+
+                    <ExpandableListView
+                        android:layout_width="match_parent"
+                        android:layout_height="500dp"
+
+                        android:id="@+id/expandableListView"
+                        />
+
 
                 </LinearLayout>
             </LinearLayout>

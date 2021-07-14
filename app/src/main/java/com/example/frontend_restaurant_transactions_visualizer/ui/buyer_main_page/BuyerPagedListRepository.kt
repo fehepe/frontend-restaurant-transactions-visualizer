@@ -16,7 +16,7 @@ class BuyerPagedListRepository (private val apiService : RTVInterface) {
     lateinit var buyerPagedList: LiveData<PagedList<Buyer>>
     lateinit var buyersDataSourceFactory: BuyerDataSourceFactory
 
-    fun fetchLiveMoviePagedList (compositeDisposable: CompositeDisposable) : LiveData<PagedList<Buyer>> {
+    fun fetchLiveBuyerPagedList (compositeDisposable: CompositeDisposable) : LiveData<PagedList<Buyer>> {
         buyersDataSourceFactory = BuyerDataSourceFactory(apiService, compositeDisposable)
 
         val config = PagedList.Config.Builder()
