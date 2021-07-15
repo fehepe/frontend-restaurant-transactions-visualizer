@@ -10,9 +10,6 @@ import java.util.concurrent.TimeUnit
 
 const val BASE_URL = "http://192.168.0.109:3000/"
 
-const val FIRST_PAGE = 1
-const val BUYER_PER_PAGE = 10
-
 object RTVClient {
     fun getClient(): RTVInterface {
 

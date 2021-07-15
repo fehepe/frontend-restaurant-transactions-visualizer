@@ -16,36 +16,45 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
         <ImageView
-            android:id="@+id/cv_ivBuyerPhoto"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:id="@+id/buyerImg"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
             android:scaleType="centerCrop"
             android:layout_gravity="center"
             android:src="@drawable/poster_placeholder">
         </ImageView>
-        <TextView
-            android:textColor="@color/black"
-            android:id="@+id/cv_tvBuyerName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginStart="4dp"
-            android:text="Fernando Hernandez"
-            android:textStyle="bold"
-            android:textSize="12sp"
-            android:maxLines="1"
-            android:ellipsize="end"/>
-        <TextView
-            android:id="@+id/cv_tvBuyerAge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginBottom="4dp"
-            android:text="26 Years Old"
-            android:maxLength="12"
-            android:textSize="12sp"/>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical"
+           android:gravity="center_vertical"
+           >
+           <TextView
+
+               android:textColor="@color/black"
+               android:id="@+id/buyerName"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+
+               android:text="Fernando Hernandez"
+               android:textStyle="bold"
+               android:textSize="25sp"
+               android:maxLines="1"
+
+
+               android:ellipsize="end"/>
+           <TextView
+               android:id="@+id/buyerAge"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="26 Years Old"
+               android:maxLength="12"
+               android:textSize="22sp"/>
+       </LinearLayout>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

@@ -36,7 +36,7 @@ class ExpandableListAdapter(var context: Context, var expandableListView : Expan
                 expandableListView.collapseGroup(groupPosition)
             else
                 expandableListView.expandGroup(groupPosition)
-            Toast.makeText(context, getGroup(groupPosition), Toast.LENGTH_SHORT).show()
+            //Toast.makeText(context, getGroup(groupPosition), Toast.LENGTH_SHORT).show()
         }
         return convertView
     }
@@ -63,7 +63,7 @@ class ExpandableListAdapter(var context: Context, var expandableListView : Expan
 
         title?.text = getChild(groupPosition,childPosition)
         title?.setOnClickListener {
-            Toast.makeText(context, getChild(groupPosition,childPosition),Toast.LENGTH_SHORT).show()
+            //Toast.makeText(context, getChild(groupPosition,childPosition),Toast.LENGTH_SHORT).show()
         }
         return convertView
     }
