@@ -77,6 +77,7 @@ class MainActivity : AppCompatActivity(),BuyerListAdapter.OnItemClickListener {
         val date = SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse("$day-$month-$year 12:00:00")
         var x = date.time.toString()
         viewModel.loadData(x)
+
     }
 
     override fun onItemEditCLick(buyer: Buyer, img:String) {

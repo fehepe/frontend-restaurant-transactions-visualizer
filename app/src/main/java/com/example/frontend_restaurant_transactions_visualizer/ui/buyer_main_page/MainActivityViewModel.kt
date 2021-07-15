@@ -56,7 +56,7 @@ class MainActivityViewModel: ViewModel() {
             }
 
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
-
+                getBuyerList()
             }
         })
     }
