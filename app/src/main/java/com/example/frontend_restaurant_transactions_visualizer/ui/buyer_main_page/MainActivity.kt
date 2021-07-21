@@ -1,10 +1,9 @@
 package com.example.frontend_restaurant_transactions_visualizer.ui.buyer_main_page
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -13,6 +12,7 @@ import com.example.frontend_restaurant_transactions_visualizer.data.vo.Buyer
 import com.example.frontend_restaurant_transactions_visualizer.databinding.ActivityMainBinding
 import com.example.frontend_restaurant_transactions_visualizer.ui.single_buyer_details.SingleBuyerDetails
 import java.text.SimpleDateFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity(),BuyerListAdapter.OnItemClickListener {
     private lateinit var binding: ActivityMainBinding
@@ -42,6 +42,8 @@ class MainActivity : AppCompatActivity(),BuyerListAdapter.OnItemClickListener {
         initViewModel()
         viewModel.getBuyerList()
 
+
+
     }
     fun initViewModel() {
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
@@ -68,15 +70,23 @@ class MainActivity : AppCompatActivity(),BuyerListAdapter.OnItemClickListener {
 
 
     private fun showDatePickerDialog() {
-        val datePicker = DatePickerFragment { day, month, year -> onDateSelected(day, month, year) }
+        val datePicker = DatePickerFragment { day, month, year -> onDateSelected(day, month+1, year) }
         datePicker.show(supportFragmentManager, "datePicker")
 
     }
     private fun onDateSelected(day: Int, month: Int, year: Int) {
+        val currentTime = Calendar.getInstance().time
 
-        val date = SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse("$day-$month-$year 12:00:00")
-        var x = date.time.toString()
-        viewModel.loadData(x)
+        val simpleDateFormat = SimpleDateFormat("HH:mm:ss")
+        val currentHours = simpleDateFormat.format(currentTime)
+
+
+        var dateString = "$day-$month-$year $currentHours"
+        val date = SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(dateString)
+        var x = date.time.toLong()/1000L
+
+        viewModel.loadData(x.toString())
+
 
     }
 

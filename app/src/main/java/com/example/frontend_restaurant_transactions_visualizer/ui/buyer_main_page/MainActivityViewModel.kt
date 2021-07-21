@@ -26,6 +26,7 @@ class MainActivityViewModel: ViewModel() {
 
     fun getBuyerList(){
 
+
         val retroInstance = RTVClient.getClient()
         val call = retroInstance.getBuyerList()
         call.enqueue(object : Callback<List<Buyer>>{
@@ -36,7 +37,11 @@ class MainActivityViewModel: ViewModel() {
             override fun onResponse(call: Call<List<Buyer>>, response: Response<List<Buyer>>) {
                 if(response.isSuccessful) {
 
+
+
                     recyclerListData.postValue(response.body())
+
+
                 } else {
                     recyclerListData.postValue(null)
                 }
@@ -44,20 +49,24 @@ class MainActivityViewModel: ViewModel() {
         })
 
 
+
     }
 
 
-    fun loadData(date: String) {
+    fun loadData(date: String)  {
+
         val retroInstance = RTVClient.getClient()
         val call = retroInstance.loadDataLocal(date)
         call.enqueue(object : Callback<String?> {
             override fun onFailure(call: Call<String?>, t: Throwable) {
-                //Toast.makeText(context, "Error Loading the Data to the API db", Toast.LENGTH_SHORT).show()
+
             }
 
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
                 getBuyerList()
+
             }
         })
+
     }
 }

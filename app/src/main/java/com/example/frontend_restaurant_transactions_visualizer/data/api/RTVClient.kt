@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 
-const val BASE_URL = "http://192.168.0.109:3000/"
+const val BASE_URL = "http://172.18.2.151:3000/"
 
 object RTVClient {
     fun getClient(): RTVInterface {
