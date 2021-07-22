@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -41,6 +42,21 @@ class MainActivity : AppCompatActivity(),BuyerListAdapter.OnItemClickListener {
         initRecyclerView()
         initViewModel()
         viewModel.getBuyerList()
+        binding.etBuyer.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(buyerId: String?): Boolean {
+                //Performs search when user hit the search button on the keyboard
+
+
+                viewModel.filterBuyer(buyerId)
+
+                return false
+            }
+            override fun onQueryTextChange(buyerId: String?): Boolean {
+                //Start filtering the list as user start entering the characters
+                viewModel.filterBuyer(buyerId)
+                return false
+            }
+        })
 
 
 
@@ -76,7 +92,6 @@ class MainActivity : AppCompatActivity(),BuyerListAdapter.OnItemClickListener {
     }
     private fun onDateSelected(day: Int, month: Int, year: Int) {
         val currentTime = Calendar.getInstance().time
-
         val simpleDateFormat = SimpleDateFormat("HH:mm:ss")
         val currentHours = simpleDateFormat.format(currentTime)
 

@@ -14,8 +14,11 @@ class MainActivityViewModel: ViewModel() {
 
     lateinit var recyclerListData: MutableLiveData<List<Buyer>>
 
+    lateinit var listBuyer: MutableLiveData<List<Buyer>>
+
     init {
         recyclerListData = MutableLiveData()
+        listBuyer = MutableLiveData()
 
     }
 
@@ -40,6 +43,7 @@ class MainActivityViewModel: ViewModel() {
 
 
                     recyclerListData.postValue(response.body())
+                    listBuyer.postValue(response.body())
 
 
                 } else {
@@ -52,6 +56,24 @@ class MainActivityViewModel: ViewModel() {
 
     }
 
+    fun filterBuyer(buyerId : String?){
+
+        var filteredBuyers: List<Buyer> = listOf<Buyer>()
+
+        if (!recyclerListData.value.isNullOrEmpty() and !buyerId.isNullOrEmpty()){
+
+            for (buyer in listBuyer.value!!){
+                if (buyer.id.lowercase().startsWith(buyerId!!.lowercase()) or buyer.name.lowercase().startsWith(buyerId!!.lowercase())){
+                    filteredBuyers += buyer
+                }
+            }
+
+            recyclerListData.postValue(filteredBuyers)
+        }else{
+            recyclerListData.postValue(listBuyer.value)
+        }
+
+    }
 
     fun loadData(date: String)  {
 
