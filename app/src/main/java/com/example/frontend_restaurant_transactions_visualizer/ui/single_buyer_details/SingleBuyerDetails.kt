@@ -54,9 +54,9 @@ class SingleBuyerDetails : AppCompatActivity() {
 
         binding.tvBuyerName.text = it.buyer[0].name
 
-        val moviePosterURL: String? = imgUrl
+        val buyerPhotoURL: String? = imgUrl
         Glide.with(this)
-            .load(moviePosterURL)
+            .load(buyerPhotoURL)
             .into(binding.ivBuyerPhoto)
 
         header.add("Transactions")

@@ -39,8 +39,17 @@ class MainActivityViewModel: ViewModel() {
 
             override fun onResponse(call: Call<List<Buyer>>, response: Response<List<Buyer>>) {
                 if(response.isSuccessful) {
-
-
+                    val randGender = (0..1).random()
+                    if (response.body() != null){
+                        for (buyer in response.body()!!){
+                            if (randGender == 0){
+                                buyer.url = "https://randomuser.me/api/portraits/men/${(0..99).random()}.jpg"
+                            }else {
+                                buyer.url =
+                                    "https://randomuser.me/api/portraits/women/${(0..99).random()}.jpg"
+                            }
+                        }
+                    }
 
                     recyclerListData.postValue(response.body())
                     listBuyer.postValue(response.body())
@@ -74,6 +83,7 @@ class MainActivityViewModel: ViewModel() {
         }
 
     }
+
 
     fun loadData(date: String)  {
 

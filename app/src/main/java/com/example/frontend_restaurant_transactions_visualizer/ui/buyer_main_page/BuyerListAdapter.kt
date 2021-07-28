@@ -26,23 +26,19 @@ class BuyerListAdapter(val clickListener: OnItemClickListener) : RecyclerView.Ad
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         var context = viewHolder.itemView.context
-        val randGender = (0..1).random()
-        var buyerPosterURL = ""
 
-        if (randGender == 0){
-            buyerPosterURL = "https://randomuser.me/api/portraits/men/${(0..99).random()}.jpg"
-        }else{
-            buyerPosterURL = "https://randomuser.me/api/portraits/women/${(0..99).random()}.jpg"
-        }
+
+
+
         viewHolder.buyerName.text = buyers[position].name
         viewHolder.buyerAge.text =buyers[position].age.toString() + " years old"
 
         Glide.with(context)
-            .load(buyerPosterURL)
+            .load(buyers[position].url)
             .into(viewHolder.buyerImg);
 
         viewHolder.itemView.setOnClickListener{
-            clickListener.onItemEditCLick(buyers[position],buyerPosterURL)
+            clickListener.onItemEditCLick(buyers[position],buyers[position].url)
 
         }
 
